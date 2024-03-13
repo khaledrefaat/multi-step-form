@@ -1,0 +1,24 @@
+:root {
+  --primary-color: #6259ff;
+  --primary-color-darker: #18498e;
+  --secondary-color: #f9818e;
+  --tertiary-color: #ffaf7e;
+  --error-color: #dd596c;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #eef5ff;
+}
