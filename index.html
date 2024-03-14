@@ -8,122 +8,156 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer type="module"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <script src="./app.js" defer type="module"></script>
   <title>Frontend Mentor | Multi-step form</title>
 </head>
 
 <body>
-  <main>
-    <div class="container">
+  <template id="content-header">
+    <h3>
+      <slot name="title"></slot>
+    </h3>
+    <p>
+      <slot name="details"></slot>
+    </p>
+  </template>
 
-      <!-- Sidebar start -->
-      <template id="sidebar">
-        <aside>
-          <ul class="steps"></ul>
-        </aside>
-      </template>
-      <div class="sidebar">
-        <!-- 
-      Step 1
-      Your info
+  <template id="personal-info">
+    <div class="personal-info">
+      <content-header>
+        <span slot="title">Personal info</span>
+        <span slot="details">Please provide your name, email address, and phone number.</span>
+      </content-header>
+      <form>
+        <div class="form-control">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="e.g. Stephen King">
+        </div>
+        <div class="form-control">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="e.g. stephenking@lorem">
+        </div>
+        <div class="form-control">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="e.g. +1 234 567 890">
+        </div>
+      </form>
+      <div class="btn">Next Step</div>
+    </div>
+  </template>
 
-      Step 2
-      Select plan
 
-      Step 3
-      Add-ons
+  <!-- <div class="registration-step"> -->
+  <template id="select-plan">
+    <div class="select-plan">
+      <content-header>
+        <span slot="title">Select Your Plan</span>
+        <span slot="details">You have the option of monthly or yearly billing.</span>
+      </content-header>
 
-      Step 4
-      Summary
- -->
-
+      <div class="plans">
+        <div class="plan">
+          <img src="assets/images/icon-arcade.svg" alt="Arcade">
+          <h4>arcade</h4>
+          <p>$9/mo</p>
+        </div>
+        <div class="plan">
+          <img src="assets/images/icon-advanced.svg" alt="Advanced">
+          <h4>advanced</h4>
+          <p>$12/mo</p>
+        </div>
+        <div class="plan">
+          <img src="assets/images/icon-pro.svg" alt="Pro">
+          <h4>arcade</h4>
+          <p>$15/mo</p>
+        </div>
       </div>
-      <!-- Sidebar end -->
-
-      <div class="registration-step">
-        <template id="personal-info">
-          <!-- <h3>Personal Info</h3>
-          <p>Please provide your name, email address, and phone number.</p>
-          <form>
-            <div class="form-control">
-              <label for="name">Name</label>
-              <input type="text" id="name" placeholder="e.g. Stephen King">
-            </div>
-            <div class="form-control">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" placeholder="e.g. stephenking@lorem">
-            </div>
-            <div class="form-control">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" placeholder="e.g. +1 234 567 890">
-            </div>
-          </form>
-          <div class="btn">Next Step</div> -->
-        </template>
-        <template id="select-plan">
-        </template>
+      <div class="navigation-btns">
+        <div class="btn">Next Step</div>
+        <div class="back-btn">Go Back</div>
       </div>
     </div>
+  </template>
 
-  </main>
+  <template id="addons">
+    <div class="addons">
+      <content-header>
+        <span slot="title">Pick add-ons</span>
+        <span slot="details">Add-ons help enhance your gaming experience.</span>
+      </content-header>
 
-  <!-- Step 2 start -->
+      <div class="options">
+        <div class="option">
+          <input type="checkbox">
+          <div class="option-details">
+            <h4>Online service</h4>
+            <p>Access to multiplayer games</p>
+          </div>
+          <p>+$1/mo</p>
+        </div>
 
-  <!-- Select your plan
-  You have the option of monthly or yearly billing.
+        <div class="option">
+          <input type="checkbox">
+          <div class="option-details">
+            <h4>Larger storage</h4>
+            <p>Extra 1TB of cloud save</p>
+          </div>
+          <p>+$2/mo</p>
+        </div>
 
-  Arcade
-  $9/mo
+        <div class="option">
+          <input type="checkbox">
+          <div class="option-details">
+            <h4>Customizable Profile</h4>
+            <p>Custom theme on your profile</p>
+          </div>
+          <p>+$2/mo</p>
+        </div>
 
-  Advanced
-  $12/mo
+      </div>
+      <div class="navigation-btns">
+        <div class="btn">Next Step</div>
+        <div class="back-btn">Go Back</div>
+      </div>
+    </div>
+  </template>
 
-  Pro
-  $15/mo
+  <template id="summary">
+    <div class="summary">
+      <content-header>
+        <span slot="title">Finishing up</span>
+        <span slot="details">Double-check everything looks OK before confirming.</span>
+      </content-header>
 
-  Monthly
-  Yearly
+      <div class="selected-details">
+        <div class="selected-plan">
+          <div class="plan">
+            <h4>Arcade (monthly)</h4>
+            <a href="/select-plan">Change</a>
+          </div>
+          <div class="addons">
+            <div class="addon"><span>Online Service</span><span>+1$/mo</span></div>
+            <div class="addon"><span>Large storage</span><span>+2$/mo</span></div>
+          </div>
+        </div>
+      </div>
 
-  Go Back
-  Next Step -->
+      <div class="total">
+        <p>Total (per month)</p>
+        <span>+$12/mo</span>
+      </div>
 
-  <!-- Step 2 end -->
+      <div class="navigation-btns">
+        <div class="btn">Confirm</div>
+        <div class="back-btn">Go Back</div>
+      </div>
+  </template>
 
-  <!-- Step 3 start -->
-
-  <!-- Pick add-ons
-  Add-ons help enhance your gaming experience. -->
-
-  <!-- Online service
-  Access to multiplayer games
-  +$1/mo
-
-  Larger storage
-  Extra 1TB of cloud save
-  +$2/mo
-
-  Customizable Profile
-  Custom theme on your profile
-  +$2/mo
-
-  Go Back
-  Next Step -->
-
-  <!-- Step 3 end -->
-
-  <!-- Step 4 start -->
-  <!-- 
-  Finishing up
-  Double-check everything looks OK before confirming. -->
-
-  <!-- Dynamically add subscription and add-on selections here -->
-
-  <!-- Total (per month/year)
-
-  Go Back -->
-  <!-- Confirm -->
-
-  <!-- Step 4 end -->
 
   <!-- Step 5 start -->
 
@@ -134,6 +168,52 @@
   to email us at support@loremgaming.com. -->
 
   <!-- Step 5 end -->
+
+  <main>
+    <div class="sidebar">
+      <ul class="plans-list">
+        <li class="plan active">
+          <a href="/" class="navlink">
+            <div>1</div>
+            <div>
+              <p>Step 1</p>
+              <h4>Your info</h4>
+            </div>
+          </a>
+        </li>
+        <li class="plan">
+          <a href="/select-plan" class="navlink">
+            <div>2</div>
+            <div>
+              <p>Step 2</p>
+              <h4>Select plan</h4>
+            </div>
+          </a>
+        </li>
+        <li class="plan">
+          <a href="/add-ons" class="navlink">
+            <div>3</div>
+            <div>
+              <p>Step 3</p>
+              <h4>Add-ons</h4>
+            </div>
+          </a>
+        </li>
+        <li class="plan">
+          <a href="/summary" class="navlink">
+            <div>4</div>
+            <div>
+              <p>Step 4</p>
+              <h4>Summary</h4>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div id="step">
+
+    </div>
+  </main>
 </body>
 
 </html>

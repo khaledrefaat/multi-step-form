@@ -1,4 +1,4 @@
-export class CssLoader {
+export default class CssLoader {
   constructor(root) {
     this.root = root;
 
