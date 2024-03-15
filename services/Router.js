@@ -31,6 +31,11 @@ const Router = {
       default:
         pageElement = document.createElement('personal-info');
     }
+
+    $$('.navlink').forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === route) link.classList.add('active');
+    });
     const cache = $('#step');
     cache.innerHTML = '';
     cache.appendChild(pageElement);

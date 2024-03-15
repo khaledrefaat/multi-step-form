@@ -47,9 +47,9 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  min-width: 800px;
-  min-height: 600px;
-  box-shadow: 15px 15px 15px -3px rgba(0, 0, 0, 0.2);
+  min-width: 900px;
+  min-height: 500px;
+  /* box-shadow: 15px 15px 15px -3px rgba(0, 0, 0, 0.2); */
   border-radius: 20px;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -78,6 +78,7 @@ main {
   list-style: none;
   padding: 0;
 }
+
 .plan a {
   display: flex;
   align-items: center;
@@ -86,7 +87,7 @@ main {
 }
 
 .plan:not(:last-of-type) {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .plan div:first-child {
@@ -113,11 +114,12 @@ main {
 .plan p {
   font-size: 1.2rem;
   text-transform: uppercase;
+  color: var(--text-color-lighter);
 }
 
 .plan h4 {
   margin-top: 2px;
-  color: #f5f5f5;
+  color: white;
   font-size: 1.4rem;
   text-transform: uppercase;
 }
