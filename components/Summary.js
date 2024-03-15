@@ -13,6 +13,10 @@ export class Summary extends HTMLElement {
     const template = $('#summary');
     const content = template.content.cloneNode(true);
     this.root.appendChild(content);
+
+    $('[slot="title"]', this.root).textContent = 'Finishing up';
+    $('[slot="description"]', this.root).textContent =
+      'Double-check everything looks OK before confirming.';
   }
 }
 

@@ -14,6 +14,10 @@ export class Addons extends HTMLElement {
     const template = $('#addons');
     const content = template.content.cloneNode(true);
     this.root.appendChild(content);
+
+    $('[slot="title"]', this.root).textContent = 'Pick add-ons';
+    $('[slot="description"]', this.root).textContent =
+      'Add-ons help enhance your gaming experience';
   }
 }
 

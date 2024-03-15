@@ -19,19 +19,15 @@
 
 <body>
   <template id="content-header">
-    <h3>
-      <slot name="title"></slot>
-    </h3>
-    <p>
-      <slot name="details"></slot>
+    <h2 slot="title">
+    </h2>
+    <p slot="description">
     </p>
   </template>
 
   <template id="personal-info">
     <div class="personal-info">
       <content-header>
-        <span slot="title">Personal info</span>
-        <span slot="details">Please provide your name, email address, and phone number.</span>
       </content-header>
       <form>
         <div class="form-control">
@@ -56,8 +52,6 @@
   <template id="select-plan">
     <div class="select-plan">
       <content-header>
-        <span slot="title">Select Your Plan</span>
-        <span slot="details">You have the option of monthly or yearly billing.</span>
       </content-header>
 
       <div class="plans">
@@ -87,8 +81,6 @@
   <template id="addons">
     <div class="addons">
       <content-header>
-        <span slot="title">Pick add-ons</span>
-        <span slot="details">Add-ons help enhance your gaming experience.</span>
       </content-header>
 
       <div class="options">
@@ -130,8 +122,6 @@
   <template id="summary">
     <div class="summary">
       <content-header>
-        <span slot="title">Finishing up</span>
-        <span slot="details">Double-check everything looks OK before confirming.</span>
       </content-header>
 
       <div class="selected-details">

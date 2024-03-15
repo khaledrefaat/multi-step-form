@@ -14,6 +14,10 @@ export class PersonalInfo extends HTMLElement {
     const template = $('#personal-info');
     const content = template.content.cloneNode(true);
     this.root.appendChild(content);
+
+    $('[slot="title"]', this.root).textContent = 'Personal info';
+    $('[slot="description"]', this.root).textContent =
+      'Please provide your name, email address, and phone number.';
   }
 }
 
