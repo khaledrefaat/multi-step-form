@@ -1,0 +1,57 @@
+.personal-info {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-control:not(:last-of-type) {
+  margin-bottom: 2rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+input {
+  padding: 1rem;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus-visible {
+  border-color: var(--primary-color);
+}
+
+.error::before {
+  content: 'This field is required';
+  color: var(--error-color);
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.error input {
+  border-color: var(--error-color);
+}
+
+.btn-next {
+  margin-left: auto;
+}

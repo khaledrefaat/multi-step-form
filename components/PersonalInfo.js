@@ -18,6 +18,9 @@ export class PersonalInfo extends HTMLElement {
     $('[slot="title"]', this.root).textContent = 'Personal info';
     $('[slot="description"]', this.root).textContent =
       'Please provide your name, email address, and phone number.';
+    $('[slot="next-btn"]', this.root).href = '/select-plan';
+
+    $('[slot="back-btn"]', this.root).style.display = 'none';
   }
 }
 

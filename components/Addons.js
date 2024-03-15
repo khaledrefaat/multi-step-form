@@ -18,6 +18,8 @@ export class Addons extends HTMLElement {
     $('[slot="title"]', this.root).textContent = 'Pick add-ons';
     $('[slot="description"]', this.root).textContent =
       'Add-ons help enhance your gaming experience';
+    $('[slot="back-btn"]', this.root).href = '/select-plan';
+    $('[slot="next-btn"]', this.root).href = '/summary';
   }
 }
 

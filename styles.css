@@ -1,10 +1,12 @@
 :root {
-  --primary-color: #6259ff;
-  --primary-color-darker: #18498e;
+  --primary-color: #18498e;
+  --primary-color-shade: #6259ff;
+  --primary-color-darker: #072c5a;
   --secondary-color: #f9818e;
   --tertiary-color: #ffaf7e;
   --error-color: #dd596c;
   --text-color: #777;
+  --text-color-lighter: #999;
 }
 
 *,
@@ -36,7 +38,7 @@ h4 {
   font-family: 'Montserrat', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  color: var(--primary-color);
+  color: var(--primary-color-darker);
 }
 
 main {
@@ -122,6 +124,6 @@ main {
 
 .active div:first-child {
   background-color: #bde1fe;
-  color: var(--primary-color-darker);
+  color: var(--primary-color);
   border: none;
 }

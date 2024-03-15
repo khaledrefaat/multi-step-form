@@ -17,6 +17,8 @@ export class SelectPlan extends HTMLElement {
     $('[slot="title"]', this.root).textContent = 'Select your plan';
     $('[slot="description"]', this.root).textContent =
       'You have the option of monthly or yearly billing.';
+    $('[slot="back-btn"]', this.root).href = '/';
+    $('[slot="next-btn"]', this.root).href = '/add-ons';
   }
 }
 

@@ -25,6 +25,13 @@
     </p>
   </template>
 
+  <template id="navigation-buttons">
+    <div class="btn-container">
+      <a href="" slot="back-btn" class="btn-back">Go Back</a>
+      <a href="" slot="next-btn" class="btn-next">Next Step</a>
+    </div>
+  </template>
+
   <template id="personal-info">
     <div class="personal-info">
       <content-header>
@@ -43,7 +50,8 @@
           <input type="tel" id="phone" placeholder="e.g. +1 234 567 890">
         </div>
       </form>
-      <div class="btn">Next Step</div>
+      <navigation-buttons>
+      </navigation-buttons>
     </div>
   </template>
 
@@ -71,10 +79,8 @@
           <p>$15/mo</p>
         </div>
       </div>
-      <div class="navigation-btns">
-        <div class="btn">Next Step</div>
-        <div class="back-btn">Go Back</div>
-      </div>
+      <navigation-buttons>
+      </navigation-buttons>
     </div>
   </template>
 
@@ -112,10 +118,8 @@
         </div>
 
       </div>
-      <div class="navigation-btns">
-        <div class="btn">Next Step</div>
-        <div class="back-btn">Go Back</div>
-      </div>
+      <navigation-buttons>
+      </navigation-buttons>
     </div>
   </template>
 
@@ -142,10 +146,9 @@
         <span>+$12/mo</span>
       </div>
 
-      <div class="navigation-btns">
-        <div class="btn">Confirm</div>
-        <div class="back-btn">Go Back</div>
-      </div>
+      <navigation-buttons>
+      </navigation-buttons>
+    </div>
   </template>
 
 

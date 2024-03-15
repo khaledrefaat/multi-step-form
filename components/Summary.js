@@ -17,6 +17,9 @@ export class Summary extends HTMLElement {
     $('[slot="title"]', this.root).textContent = 'Finishing up';
     $('[slot="description"]', this.root).textContent =
       'Double-check everything looks OK before confirming.';
+    $('[slot="next-btn"]', this.root).href = '/confirm';
+    $('[slot="next-btn"]', this.root).textContent = 'Confirm';
+    $('[slot="back-btn"]', this.root).href = '/add-ons';
   }
 }
 
