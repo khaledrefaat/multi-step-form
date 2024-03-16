@@ -1,5 +1,5 @@
 import CssLoader from '../services/CssLoader.js';
-import { $ } from '../utils/helperFunctions.js';
+import { $, $$ } from '../utils/helperFunctions.js';
 
 export class Addons extends HTMLElement {
   constructor() {
@@ -20,6 +20,12 @@ export class Addons extends HTMLElement {
       'Add-ons help enhance your gaming experience';
     $('[slot="back-btn"]', this.root).href = '/select-plan';
     $('[slot="next-btn"]', this.root).href = '/summary';
+
+    $$('.option', this.root).forEach(addon => {
+      addon.addEventListener('click', () => {
+        addon.classList.toggle('selected');
+      });
+    });
   }
 }
 
