@@ -7,6 +7,7 @@
   --error-color: #dd596c;
   --text-color: #777;
   --text-color-lighter: #999;
+  --background-color: #eef5ff;
 }
 
 *,
@@ -23,7 +24,7 @@ html {
 }
 
 body {
-  background-color: #eef5ff;
+  background-color: var(--background-color);
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -38,7 +39,7 @@ h4 {
   font-family: 'Montserrat', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  color: var(--primary-color-darker);
+  color: var(--primary-color);
 }
 
 main {
@@ -47,8 +48,8 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  min-width: 900px;
-  min-height: 500px;
+  min-width: 800px;
+  min-height: 550px;
   /* box-shadow: 15px 15px 15px -3px rgba(0, 0, 0, 0.2); */
   border-radius: 20px;
   display: grid;

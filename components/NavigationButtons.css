@@ -18,6 +18,8 @@
 
 .btn-back {
   color: var(--text-color-lighter);
+  /* i added this margin here to make it align with the next btn */
+  margin-bottom: 1.2rem;
 }
 
 .btn-back:hover {

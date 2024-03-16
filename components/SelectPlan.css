@@ -1,0 +1,116 @@
+.select-plan {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr;
+}
+
+.plans {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: fit-content(100%) fit-content(100%);
+  grid-column-gap: 2rem;
+}
+
+.plan {
+  border: 1px solid var(--text-color);
+  height: fit-content;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.plan span {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.active-plan {
+  border-color: var(--primary-color);
+  background-color: var(--background-color);
+}
+
+.annual {
+  display: flex;
+  background-color: var(--background-color);
+  grid-column: 1 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin-top: 2.5rem;
+  border-radius: 12px;
+}
+
+.annual span {
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--text-color-lighter);
+  transition: color 0.3s ease;
+}
+
+span.active {
+  color: var(--primary-color);
+}
+
+/* Slider CheckBox */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 22px;
+  margin: 0 1.5rem;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color-darker);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--primary-color-darker);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
