@@ -24,6 +24,8 @@ export class SelectPlan extends HTMLElement {
 
           const newPrice = checkBox.checked ? price * 10 : price / 10;
           const newPriceText = `$${newPrice}/${checkBox.checked ? 'yr' : 'mo'}`;
+
+          plan.textContent = newPriceText;
         });
 
         $('span', plan).style.display = checkBox.checked
