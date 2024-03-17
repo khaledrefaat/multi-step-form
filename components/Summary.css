@@ -1,0 +1,79 @@
+.summary {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr;
+}
+
+.selected-plan {
+  background-color: var(--background-color-lighter);
+  padding: 2rem;
+}
+
+.plan {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.plan::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 0.5px;
+  background-color: #ccc;
+  bottom: -1.5rem;
+  left: 0;
+}
+
+.plan h4 {
+  margin: 0;
+  margin-bottom: 5px;
+  color: var(--primary-color-darker);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.plan a {
+  font-size: 1.2rem;
+}
+
+.addon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addon:not(:last-of-type) {
+  margin-bottom: 1.5rem;
+}
+
+.addon > span:first-child {
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--text-color-lighter);
+}
+
+.addon > span:last-child {
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--primary-color-darker);
+}
+
+.total {
+  padding: 0 2rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total p {
+  font-size: 1.2rem;
+  color: var(--text-color-lighter);
+}
+
+.total span {
+  font-weight: 700;
+  font-size: 1.7rem;
+  color: var(--primary-color-lighter);
+}
