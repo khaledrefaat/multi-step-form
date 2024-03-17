@@ -10,6 +10,24 @@ export class SelectPlan extends HTMLElement {
     this.cssLoader.loadCss('/components/SelectPlan.css');
   }
 
+  updatePrice(yearly) {
+    $$('.plan', this.root).forEach(plan => {
+      this.updateStore(plan);
+
+      $$('p', plan).forEach(plan => {
+        const priceText = plan.textContent;
+        const price = getPrice(priceText);
+
+        const newPrice = yearly ? price * 10 : price / 10;
+        const newPriceText = `$${newPrice}/${yearly ? 'yr' : 'mo'}`;
+
+        plan.textContent = newPriceText;
+      });
+
+      $('span', plan).style.display = yearly ? 'inline-block' : 'none';
+    });
+  }
+
   toggleAnnualPlan() {
     const checkBox = $('input[type="checkbox"]', this.root);
 
@@ -18,24 +36,7 @@ export class SelectPlan extends HTMLElement {
       $('.yearly', this.root).classList.toggle('active', checkBox.checked);
 
       // switch between yearly and monthly price
-      $$('.plan', this.root).forEach(plan => {
-        this.updateStore(plan);
-
-        $$('p', plan).forEach(plan => {
-          const priceText = plan.textContent;
-          const price = getPrice(priceText);
-
-          const newPrice = checkBox.checked ? price * 10 : price / 10;
-          const newPriceText = `$${newPrice}/${checkBox.checked ? 'yr' : 'mo'}`;
-
-          plan.textContent = newPriceText;
-        });
-
-        $('span', plan).style.display = checkBox.checked
-          ? 'inline-block'
-          : 'none';
-      });
-
+      this.updatePrice(checkBox.checked);
       if (app.store.addOns && app.store.addOns.length > 0) {
         function updateAddons(yearly) {
           let oldData = app.store.addOns;
@@ -97,6 +98,8 @@ export class SelectPlan extends HTMLElement {
 
     this.toggleAnnualPlan();
     this.initialData();
+    // for some reason when i put this function inside the initialData function it causes a lot of rerender bug
+    if (app.store.selectedPlan.yearly) this.updatePrice(true);
     $$('.plan', this.root).forEach(plan => {
       plan.addEventListener('click', () => {
         this.togglePlan();
