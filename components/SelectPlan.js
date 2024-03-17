@@ -1,4 +1,5 @@
 import CssLoader from '../services/CssLoader.js';
+import { updateData } from '../services/handelData.js';
 import { $, $$ } from '../utils/helperFunctions.js';
 
 export class SelectPlan extends HTMLElement {
@@ -18,6 +19,8 @@ export class SelectPlan extends HTMLElement {
 
       // switch between yearly and monthly price
       $$('.plan', this.root).forEach(plan => {
+        this.updateStore(plan);
+
         $$('p', plan).forEach(plan => {
           const priceText = plan.textContent;
           const price = priceText.replace(/\D/g, '');
@@ -41,6 +44,28 @@ export class SelectPlan extends HTMLElement {
     });
   }
 
+  initialData() {
+    let storeData = app.store.selectedPlan;
+    if (storeData) {
+      $$('.plan', this.root).forEach(plan => {
+        if ($('h4', plan).textContent === storeData.name) {
+          plan.classList.add('active-plan');
+        } else {
+          plan.classList.remove('active-plan');
+        }
+      });
+      $('input[type="checkbox"]', this.root).checked = storeData.yearly;
+    }
+  }
+
+  updateStore(plan) {
+    app.store.selectedPlan = {
+      name: $('h4', plan).textContent,
+      price: $('p', plan).textContent,
+      yearly: $('input[type="checkbox"]', this.root).checked,
+    };
+  }
+
   connectedCallback() {
     const template = $('#select-plan');
     const content = template.content.cloneNode(true);
@@ -53,12 +78,19 @@ export class SelectPlan extends HTMLElement {
     $('[slot="next-btn"]', this.root).href = '/add-ons';
 
     this.toggleAnnualPlan();
-
+    this.initialData();
     $$('.plan', this.root).forEach(plan => {
       plan.addEventListener('click', () => {
         this.togglePlan();
+        this.updateStore(plan);
         plan.classList.add('active-plan');
       });
+    });
+
+    window.addEventListener('selectedPlanChanged', () => {
+      updateData();
+
+      this.initialData();
     });
   }
 }

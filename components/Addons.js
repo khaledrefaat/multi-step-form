@@ -1,4 +1,5 @@
 import CssLoader from '../services/CssLoader.js';
+import { updateData } from '../services/handelData.js';
 import { $, $$ } from '../utils/helperFunctions.js';
 
 export class Addons extends HTMLElement {
@@ -8,6 +9,31 @@ export class Addons extends HTMLElement {
     this.root = this.attachShadow({ mode: 'open' });
     this.cssLoader = new CssLoader(this.root);
     this.cssLoader.loadCss('/components/Addons.css');
+  }
+
+  updateStore(addon) {
+    let name = $('h4', addon).textContent;
+    let price = $('.option > p', addon).textContent;
+    if (!app.store.addOns) app.store.addOns = [];
+
+    let foundAddon = app.store.addOns.find(addon => addon.name === name);
+    // keep in mind that if you updated the array with the regular methods push and pop or just use splice, it will not trigger the event, you have to use = to trigger the event
+    if (app.store.addOns.length > 0 && foundAddon) {
+      const newAddons = app.store.addOns.filter(addon => addon.name !== name);
+      app.store.addOns = newAddons;
+    } else app.store.addOns = [...app.store.addOns, { name, price }];
+  }
+
+  loadInitialData() {
+    if (app.store.addOns && app.store.addOns.length > 0) {
+      $$('.option', this.root).forEach(addon => {
+        let name = $('h4', addon).textContent;
+
+        if (app.store.addOns.find(addon => addon.name == name)) {
+          addon.classList.add('selected');
+        }
+      });
+    }
   }
 
   connectedCallback() {
@@ -24,7 +50,14 @@ export class Addons extends HTMLElement {
     $$('.option', this.root).forEach(addon => {
       addon.addEventListener('click', () => {
         addon.classList.toggle('selected');
+        this.updateStore(addon);
       });
+    });
+
+    this.loadInitialData();
+
+    window.addEventListener('addOnsChanged', () => {
+      updateData();
     });
   }
 }
