@@ -25,6 +25,7 @@ export class Addons extends HTMLElement {
   }
 
   loadInitialData() {
+    this.toggleAnnualPlan();
     if (app.store.addOns && app.store.addOns.length > 0) {
       $$('.option', this.root).forEach(addon => {
         let name = $('h4', addon).textContent;
@@ -32,6 +33,22 @@ export class Addons extends HTMLElement {
         if (app.store.addOns.find(addon => addon.name == name)) {
           addon.classList.add('selected');
         }
+      });
+    }
+  }
+
+  toggleAnnualPlan() {
+    if ((app.store.selectedPlan, app.store.selectedPlan.yearly)) {
+      // switch between yearly and monthly price
+      $$('.option', this.root).forEach(addon => {
+        const addonPrice = $('.option > p', addon);
+        const priceText = addonPrice.textContent;
+        const price = priceText.replace(/\D/g, '');
+
+        const newPrice = price * 10;
+        const newPriceText = `$${newPrice}/${'yr'}`;
+
+        addonPrice.textContent = newPriceText;
       });
     }
   }
@@ -55,6 +72,10 @@ export class Addons extends HTMLElement {
     });
 
     this.loadInitialData();
+
+    window.addEventListener('selectedPlanChanged', () => {
+      updateData();
+    });
 
     window.addEventListener('addOnsChanged', () => {
       updateData();
