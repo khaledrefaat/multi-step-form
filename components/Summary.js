@@ -20,6 +20,10 @@ export class Summary extends HTMLElement {
     $('[slot="next-btn"]', this.root).href = '/confirm';
     $('[slot="next-btn"]', this.root).textContent = 'Confirm';
     $('[slot="back-btn"]', this.root).href = '/add-ons';
+
+    $('.plan h4', this.root).textContent = `${app.store.selectedPlan.name} (${
+      app.store.selectedPlan.yearly ? 'yearly' : 'monthly'
+    })`;
   }
 }
 

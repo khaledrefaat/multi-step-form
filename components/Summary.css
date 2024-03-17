@@ -31,6 +31,7 @@
   color: var(--primary-color-darker);
   font-size: 1.3rem;
   font-weight: 700;
+  text-transform: capitalize;
 }
 
 .plan a {

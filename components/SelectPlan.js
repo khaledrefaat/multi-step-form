@@ -35,6 +35,24 @@ export class SelectPlan extends HTMLElement {
           ? 'inline-block'
           : 'none';
       });
+
+      if (app.store.addOns && app.store.addOns.length > 0) {
+        function updateAddons(yearly) {
+          let oldData = app.store.addOns;
+          app.store.addOns = [];
+          oldData.forEach(addon => {
+            let newPrice = Number(addon.price.replace(/\D/g, ''));
+            newPrice = yearly ? newPrice * 10 : newPrice / 10;
+            const newPriceText = `$${newPrice}/${yearly ? 'yr' : 'mo'}`;
+            app.store.addOns = [
+              ...app.store.addOns,
+              { name: addon.name, price: newPriceText },
+            ];
+          });
+        }
+
+        updateAddons(checkBox.checked);
+      }
     });
   }
 
