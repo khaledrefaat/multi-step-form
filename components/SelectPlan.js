@@ -99,7 +99,8 @@ export class SelectPlan extends HTMLElement {
     this.toggleAnnualPlan();
     this.initialData();
     // for some reason when i put this function inside the initialData function it causes a lot of rerender bug
-    if (app.store.selectedPlan.yearly) this.updatePrice(true);
+    if (app.store.selectedPlan && app.store.selectedPlan.yearly)
+      this.updatePrice(true);
     $$('.plan', this.root).forEach(plan => {
       plan.addEventListener('click', () => {
         this.togglePlan();

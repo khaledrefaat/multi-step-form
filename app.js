@@ -5,6 +5,7 @@ import { Addons } from './components/Addons.js';
 import { Summary } from './components/Summary.js';
 import { ContentHeader } from './components/ContentHeader.js';
 import { NavigationButtons } from './components/NavigationButtons.js';
+import { ConfirmPage } from './components/ConfirmPage.js';
 import Router from './services/Router.js';
 import { loadData } from './services/handelData.js';
 

@@ -38,7 +38,7 @@ export class Addons extends HTMLElement {
   }
 
   toggleAnnualPlan() {
-    if ((app.store.selectedPlan, app.store.selectedPlan.yearly)) {
+    if (app.store.selectedPlan && app.store.selectedPlan.yearly) {
       // switch between yearly and monthly price
       $$('.option', this.root).forEach(addon => {
         const addonPrice = $('.option > p', addon);

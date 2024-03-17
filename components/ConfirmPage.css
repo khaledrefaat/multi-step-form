@@ -1,0 +1,23 @@
+.confirm-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.confirm-page h2 {
+  font-size: 3rem;
+  color: var(--primary-color-darker);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  font-family: 'montserrat', sans-serif;
+}
+
+.confirm-page p {
+  color: var(--text-color-lighter);
+  font-size: 1.4rem;
+  margin: 0;
+  text-align: center;
+}

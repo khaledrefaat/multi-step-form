@@ -40,11 +40,18 @@ export class Summary extends HTMLElement {
     confirmButton.classList.add('disabled');
     $('[slot="back-btn"]', this.root).href = '/add-ons';
 
-    $('.plan h4', this.root).textContent = `${app.store.selectedPlan.name} (${
-      app.store.selectedPlan.yearly ? 'yearly' : 'monthly'
-    })`;
+    if (app.store.selectedPlan) {
+      const {
+        name: planName,
+        price: planPrice,
+        yearly: isPlanYearly,
+      } = app.store.selectedPlan;
+      $('.plan h4', this.root).textContent = `${planName && planName} (${
+        isPlanYearly ? 'yearly' : 'monthly'
+      })`;
 
-    $('.plan > p', this.root).textContent = app.store.selectedPlan.price;
+      $('.plan > p', this.root).textContent = planPrice && planPrice;
+    }
 
     $('.plan a', this.root).addEventListener('click', e => {
       e.preventDefault();
@@ -65,7 +72,7 @@ export class Summary extends HTMLElement {
       });
     }
 
-    if (app.store.selectedPlan) {
+    if (app.store.selectedPlan && app.store.addOns) {
       const totalElementDescription = $('.total p', this.root);
       const totalPriceElement = $('.total span', this.root);
       let total = 0;
@@ -84,8 +91,8 @@ export class Summary extends HTMLElement {
         totalPriceElement.textContent = `$${total}/mo`;
       }
     }
-
-    this.checkStore(confirmButton);
+    if (app.store.personalInfo && app.store.selectedPlan && app.store.addOns)
+      this.checkStore(confirmButton);
 
     $('.selected-plan .addons', this.root).textContent;
   }

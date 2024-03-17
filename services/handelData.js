@@ -26,3 +26,8 @@ export function updateData() {
       JSON.stringify(app.store.selectedPlan)
     );
 }
+
+export function clearData() {
+  localStorage.clear();
+  app.store = {};
+}

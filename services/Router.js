@@ -28,6 +28,9 @@ const Router = {
       case '/summary':
         pageElement = document.createElement('summary-page');
         break;
+      case '/completed':
+        pageElement = document.createElement('confirm-page');
+        break;
       default:
         pageElement = document.createElement('personal-info');
     }
