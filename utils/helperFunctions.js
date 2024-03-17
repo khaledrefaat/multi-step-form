@@ -5,3 +5,7 @@ export function $(selector, scope = document) {
 export function $$(selector, scope = document) {
   return scope.querySelectorAll(selector);
 }
+
+export function getPrice(price) {
+  return Number(price.replace(/\D/g, ''));
+}

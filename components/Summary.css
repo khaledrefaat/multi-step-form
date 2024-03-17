@@ -13,6 +13,15 @@
 .plan {
   margin-bottom: 3rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.plan p {
+  color: var(--primary-color-darker);
+  font-weight: 700;
+  font-size: 1.4rem;
 }
 
 .plan::after {

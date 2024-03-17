@@ -1,6 +1,6 @@
 import CssLoader from '../services/CssLoader.js';
 import { updateData } from '../services/handelData.js';
-import { $, $$ } from '../utils/helperFunctions.js';
+import { $, $$, getPrice } from '../utils/helperFunctions.js';
 
 export class SelectPlan extends HTMLElement {
   constructor() {
@@ -23,7 +23,7 @@ export class SelectPlan extends HTMLElement {
 
         $$('p', plan).forEach(plan => {
           const priceText = plan.textContent;
-          const price = priceText.replace(/\D/g, '');
+          const price = getPrice(priceText);
 
           const newPrice = checkBox.checked ? price * 10 : price / 10;
           const newPriceText = `$${newPrice}/${checkBox.checked ? 'yr' : 'mo'}`;
@@ -41,7 +41,7 @@ export class SelectPlan extends HTMLElement {
           let oldData = app.store.addOns;
           app.store.addOns = [];
           oldData.forEach(addon => {
-            let newPrice = Number(addon.price.replace(/\D/g, ''));
+            let newPrice = getPrice(addon.price);
             newPrice = yearly ? newPrice * 10 : newPrice / 10;
             const newPriceText = `$${newPrice}/${yearly ? 'yr' : 'mo'}`;
             app.store.addOns = [

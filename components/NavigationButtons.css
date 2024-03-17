@@ -38,3 +38,12 @@
 .btn-next:hover {
   background-color: var(--primary-color);
 }
+
+.disabled {
+  background-color: var(--primary-color-lighter);
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  background-color: var(--primary-color-lighter);
+}
