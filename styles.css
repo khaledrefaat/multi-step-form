@@ -21,7 +21,7 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%;
+  font-size: 43.75%;
 }
 
 body {
@@ -56,8 +56,9 @@ main {
   padding: 2rem;
   overflow: hidden;
   gap: 0;
-  min-width: 80%;
-  margin-top: 5rem;
+  min-width: 90%;
+  /* just to make the main under the side bar navigations */
+  margin-top: -20rem;
 }
 
 #step {
@@ -68,14 +69,14 @@ main {
 
 .sidebar {
   width: 100%;
-  height: 20rem;
+  height: 30rem;
   background-position: center;
   background-size: cover;
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .sidebar::after {
@@ -97,10 +98,10 @@ main {
   padding: 0;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 10rem;
+  justify-content: center;
   width: 100%;
-  padding: 0 2rem;
+  padding: 2rem;
+  margin-top: 5rem;
 }
 
 .plan a {
@@ -123,6 +124,10 @@ main {
   justify-content: center;
   font-size: 1.4rem;
   font-weight: 700;
+}
+
+.plan div:last-child {
+  display: none;
 }
 
 .plan p,
@@ -150,18 +155,46 @@ main {
   border: none;
 }
 
-@media screen and (min-width: 53.125rem) /* 850px */ {
+.navlink,
+.navlink:visited,
+.navlink:active,
+.navlink:hover,
+.plan,
+.plan:active,
+.plan:visited {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+@media screen and (min-width: 37.5rem) /* 600px */ {
+  html {
+    font-size: 50%;
+  }
+
+  .plan p {
+    font-size: 1rem;
+  }
+
+  .plan h4 {
+    font-size: 1.2rem;
+  }
+
   main {
-    min-width: 850px;
-    min-height: 550px;
+    margin-top: -15rem;
   }
 }
 
 @media screen and (min-width: 48rem) /* 786px */ {
+  html {
+    font-size: 62.5%;
+  }
+
   main {
     grid-template-columns: 1fr 2fr;
     min-width: 786px;
     min-height: 550px;
+    margin-top: 0;
   }
 
   .sidebar {
@@ -173,28 +206,39 @@ main {
     padding-top: 2rem;
     background-position: center;
     background-size: cover;
+    position: relative;
+    display: block;
+  }
+
+  .sidebar::after {
+    display: none;
+  }
+
+  .plans-list {
+    display: block;
+    list-style: none;
   }
 
   .plan:not(:last-of-type) {
     margin-bottom: 3rem;
   }
+
+  .plan div:last-child {
+    display: block;
+  }
+
   html {
-    box-sizing: border-box;
-    font-size: 50%;
+    font-size: 56.25%;
   }
 }
 
-@media screen and (min-width: 37.5rem) /* 600px */ {
+@media screen and (min-width: 53.125rem) /* 850px */ {
+  main {
+    min-width: 850px;
+    min-height: 550px;
+  }
+
   html {
-    box-sizing: border-box;
-    font-size: 37%;
-  }
-
-  .plan p {
-    font-size: 1rem;
-  }
-
-  .plan h4 {
-    font-size: 1.2rem;
+    font-size: 62.5%;
   }
 }
