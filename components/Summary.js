@@ -25,7 +25,7 @@ export class Summary extends HTMLElement {
     }
   }
 
-  connectedCallback() {
+  render() {
     const template = $('#summary');
     const content = template.content.cloneNode(true);
     this.root.appendChild(content);
@@ -95,6 +95,16 @@ export class Summary extends HTMLElement {
       this.checkStore(confirmButton);
 
     $('.selected-plan .addons', this.root).textContent;
+  }
+
+  connectedCallback() {
+    window.addEventListener('selectedPlanChanged', () => {
+      this.render();
+    });
+
+    window.addEventListener('addOnsChanged', () => {
+      this.render();
+    });
   }
 }
 

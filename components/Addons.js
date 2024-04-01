@@ -78,6 +78,7 @@ export class Addons extends HTMLElement {
     });
 
     window.addEventListener('addOnsChanged', () => {
+      this.loadInitialData();
       updateData();
     });
   }
