@@ -2,6 +2,24 @@ import CssLoader from '../services/CssLoader.js';
 import { updateData } from '../services/handelData.js';
 import { $, $$, getPrice } from '../utils/helperFunctions.js';
 
+const plans = [
+  {
+    name: 'Arcade',
+    MonthlyPrice: 9,
+    YearlyPrice: 90,
+  },
+  {
+    name: 'Advanced',
+    MonthlyPrice: 12,
+    YearlyPrice: 120,
+  },
+  {
+    name: 'Pro',
+    MonthlyPrice: 15,
+    YearlyPrice: 150,
+  },
+];
+
 export class SelectPlan extends HTMLElement {
   constructor() {
     super();
@@ -12,14 +30,16 @@ export class SelectPlan extends HTMLElement {
 
   updatePrice(yearly) {
     $$('.plan', this.root).forEach(plan => {
-      $$('p', plan).forEach(plan => {
-        const priceText = plan.textContent;
-        const price = getPrice(priceText);
+      $$('p', plan).forEach(planPrice => {
+        const planName = $('h4', plan);
+        const planData = plans.find(
+          p => p.name.toLocaleLowerCase() === planName.textContent
+        );
 
-        const newPrice = yearly ? price * 10 : price / 10;
+        const newPrice = yearly ? planData.YearlyPrice : planData.MonthlyPrice;
         const newPriceText = `$${newPrice}/${yearly ? 'yr' : 'mo'}`;
 
-        plan.textContent = newPriceText;
+        planPrice.textContent = newPriceText;
       });
 
       $('span', plan).style.display = yearly ? 'inline-block' : 'none';
@@ -47,7 +67,6 @@ export class SelectPlan extends HTMLElement {
     checkBox.addEventListener('click', () => {
       $('.monthly', this.root).classList.toggle('active', !checkBox.checked);
       $('.yearly', this.root).classList.toggle('active', checkBox.checked);
-
       // switch between yearly and monthly price
       this.updatePrice(checkBox.checked);
       this.updateStore($('.active-plan', this.root));
@@ -95,8 +114,6 @@ export class SelectPlan extends HTMLElement {
     $('[slot="back-btn"]', this.root).href = '/';
     $('[slot="next-btn"]', this.root).href = '/add-ons';
 
-    this.toggleAnnualPlan();
-    this.initialData();
     // for some reason when i put this function inside the initialData function it causes a lot of rerender bug
     if (app.store.selectedPlan && app.store.selectedPlan.yearly)
       this.updatePrice(app.store.selectedPlan.yearly);
@@ -109,10 +126,14 @@ export class SelectPlan extends HTMLElement {
       });
     });
 
-    window.addEventListener('selectedPlanChanged', () => {
-      updateData();
+    this.toggleAnnualPlan();
+    this.initialData();
 
+    window.addEventListener('selectedPlanChanged', () => {
+      this.updatePrice(app.store.selectedPlan.yearly);
+      this.toggleAnnualPlan();
       this.initialData();
+      updateData();
     });
   }
 }
