@@ -1,24 +1,7 @@
 import CssLoader from '../services/CssLoader.js';
 import { updateData } from '../services/handelData.js';
 import { $, $$, getPrice } from '../utils/helperFunctions.js';
-
-const plans = [
-  {
-    name: 'Arcade',
-    MonthlyPrice: 9,
-    YearlyPrice: 90,
-  },
-  {
-    name: 'Advanced',
-    MonthlyPrice: 12,
-    YearlyPrice: 120,
-  },
-  {
-    name: 'Pro',
-    MonthlyPrice: 15,
-    YearlyPrice: 150,
-  },
-];
+import { plans, addons } from '../data.js';
 
 export class SelectPlan extends HTMLElement {
   constructor() {
@@ -53,8 +36,12 @@ export class SelectPlan extends HTMLElement {
       let oldData = app.store.addOns;
       app.store.addOns = [];
       oldData.forEach(addon => {
-        let newPrice = getPrice(addon.price);
-        newPrice = yearly ? newPrice * 10 : newPrice / 10;
+        const addonData = addons.find(
+          add => add.name.toLowerCase() === addon.name.toLowerCase()
+        );
+        const newPrice = yearly
+          ? addonData.YearlyPrice
+          : addonData.MonthlyPrice;
         const newPriceText = `$${newPrice}/${yearly ? 'yr' : 'mo'}`;
 
         app.store.addOns = [

@@ -25,7 +25,6 @@ export class Addons extends HTMLElement {
   }
 
   loadInitialData() {
-    console.log(app.store.addOns);
     this.toggleAnnualPlan();
     if (app.store.addOns && app.store.addOns.length > 0) {
       $$('.option', this.root).forEach(addon => {
@@ -72,13 +71,10 @@ export class Addons extends HTMLElement {
       });
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
-      this.loadInitialData();
-    });
-
     this.loadInitialData();
 
     window.addEventListener('selectedPlanChanged', () => {
+      this.loadInitialData();
       updateData();
     });
 
