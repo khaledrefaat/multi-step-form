@@ -26,10 +26,6 @@ export class Summary extends HTMLElement {
   }
 
   render() {
-    const template = $('#summary');
-    const content = template.content.cloneNode(true);
-    this.root.appendChild(content);
-
     const confirmButton = $('[slot="next-btn"]', this.root);
 
     $('[slot="title"]', this.root).textContent = 'Finishing up';
@@ -98,11 +94,16 @@ export class Summary extends HTMLElement {
   }
 
   connectedCallback() {
-    window.addEventListener('selectedPlanChanged', () => {
+    const template = $('#summary');
+    const content = template.content.cloneNode(true);
+    this.root.appendChild(content);
+
+    this.render();
+    window.addEventListener('addOnsChanged', () => {
       this.render();
     });
 
-    window.addEventListener('addOnsChanged', () => {
+    window.addEventListener('selectedPlanChanged', () => {
       this.render();
     });
   }

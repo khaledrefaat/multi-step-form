@@ -167,6 +167,12 @@ main {
   border: none;
 }
 
+@media screen and (max-width: 37.5rem) /* 600px */ {
+  .plans-list .plan .last {
+    color: var(--primary-color-darker);
+  }
+}
+
 @media screen and (min-width: 37.5rem) /* 600px */ {
   html {
     font-size: 50%;
